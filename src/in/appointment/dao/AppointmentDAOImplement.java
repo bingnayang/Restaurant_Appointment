@@ -1,0 +1,54 @@
+package in.appointment.dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import in.appointment.entity.Appointment;
+import in.appointment.util.DBConnectionUtil;
+
+public class AppointmentDAOImplement implements AppointmentDAO {
+
+	Connection conn = null;
+	Statement statement = null;
+	ResultSet resultSet = null;
+	
+	@Override
+	public List<Appointment> get() {
+		// Create reference variables
+		List<Appointment> list = null;
+		Appointment apptInfo = null;
+		
+		try {
+			list = new ArrayList<Appointment>();
+			// SQL
+			String sql = "SELECT * FROM appointment";
+			// Get the database connection
+			conn = DBConnectionUtil.openConnection();
+			// Create a statement
+			statement = conn.createStatement();
+			// Execute the query
+			resultSet = statement.executeQuery(sql);
+			// Process the resultSet
+			while(resultSet.next()) {
+				apptInfo = new Appointment();
+				apptInfo.setAppointment_ID(resultSet.getInt("appointment_Id"));
+				apptInfo.setAppt_Date(resultSet.getString("date"));
+				apptInfo.setAppt_Time(resultSet.getString("time"));
+				apptInfo.setName(resultSet.getString("name"));
+				apptInfo.setNumb_People(resultSet.getInt("numb_people"));
+				apptInfo.setPhone(resultSet.getString("phone"));
+				apptInfo.setNote(resultSet.getString("note"));
+				// Add book to list
+				list.add(apptInfo);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+}
