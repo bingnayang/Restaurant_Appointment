@@ -25,21 +25,25 @@
 	<div class="container-fluid">
 		<table class="table table-striped">
 				<tr style="background-color: #1F3944; color: white;">
+					<th>#</th>
 					<th>Date</th>
 					<th>Time</th>
 					<th>Name</th>
 					<th>People</th>
 					<th>Phone</th>
 					<th>Note</th>
+					<th>EDIT / DELETE</th>
 				</tr>
-				<c:forEach items="${allAppointmentList}" var="appointmentList">
+				<c:forEach items="${allAppointmentList}" var="appointmentList" varStatus="status">
 					<tr>
+						<td>${status.count}"</td>
 						<td>${appointmentList.appt_Date}</td>
 						<td>${appointmentList.appt_Time}</td>
 						<td>${appointmentList.name}</td>
 						<td>${appointmentList.numb_People}</td>
 						<td>${appointmentList.phone}</td>
 						<td>${appointmentList.note}</td>
+						<td></td>
 					</tr>
 				</c:forEach>
 		</table>

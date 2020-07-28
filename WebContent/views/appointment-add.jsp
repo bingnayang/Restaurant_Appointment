@@ -23,7 +23,7 @@
 			</div>
 			<div class="form-group">
 				<label for="time">Time</label> 
-				<input type="text" class="form-control" name="time">
+				<input type="time" class="form-control" name="time">
 			</div>
 			<div class="form-group">
 				<label for="name">Name</label> 

@@ -59,7 +59,7 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 		boolean flag = false;
 		try {
 			String sql = "INSERT INTO appointments (date,time,name,numb_people,phone,note) " + 
-					"VALUES("+appt.getAppt_Date()+","+appt.getAppt_Time()+","+appt.getName()+","+appt.getNumb_People()+","+appt.getPhone()+","+appt.getNote()+")";
+					"VALUES('"+appt.getAppt_Date()+"','"+appt.getAppt_Time()+"','"+appt.getName()+"',"+appt.getNumb_People()+",'"+appt.getPhone()+"','"+appt.getNote()+"')";
 			conn = DBConnectionUtil.openConnection();
 			preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.executeUpdate();
