@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DBConnectionUtil {
 	// Define the database properties
     public static final String DB_NAME = "restaurant_appointment.db";
-    public static final String CONNECTION_STRING = "/Users/Bing/eclipse-workspace/Restaurant_Appointment/"+ DB_NAME;
+    public static final String CONNECTION_STRING = "jdbc:sqlite:/Users/Bing/eclipse-workspace/Restaurant_Appointment/"+ DB_NAME;
     private static Connection connection;
     public static Connection openConnection() {
     	// Check the connection

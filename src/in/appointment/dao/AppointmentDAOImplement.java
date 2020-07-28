@@ -24,7 +24,7 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 		try {
 			list = new ArrayList<Appointment>();
 			// SQL
-			String sql = "SELECT * FROM appointment";
+			String sql = "SELECT * FROM appointments";
 			// Get the database connection
 			conn = DBConnectionUtil.openConnection();
 			// Create a statement
@@ -34,7 +34,7 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 			// Process the resultSet
 			while(resultSet.next()) {
 				apptInfo = new Appointment();
-				apptInfo.setAppointment_ID(resultSet.getInt("appointment_Id"));
+				apptInfo.setAppointment_ID(resultSet.getInt("appointment_ID"));
 				apptInfo.setAppt_Date(resultSet.getString("date"));
 				apptInfo.setAppt_Time(resultSet.getString("time"));
 				apptInfo.setName(resultSet.getString("name"));

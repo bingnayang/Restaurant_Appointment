@@ -18,14 +18,14 @@
 			<th>Phone</th>
 			<th>Note</th>
 		</tr>
-		<c:forEach items="${list}" var="allAppointmentList">
+		<c:forEach items="${allAppointmentList}" var="appointmentList">
 			<tr>
-				<td>${allAppointmentList.appt_Date}</td>
-				<td>${allAppointmentList.appt_Time}</td>				
-				<td>${allAppointmentList.name}</td>
-				<td>${allAppointmentList.numb_People}</td>				
-				<td>${allAppointmentList.phone}</td>		
-				<td>${allAppointmentList.note}</td>							
+				<td>${appointmentList.appt_Date}</td>
+				<td>${appointmentList.appt_Time}</td>				
+				<td>${appointmentList.name}</td>
+				<td>${appointmentList.numb_People}</td>				
+				<td>${appointmentList.phone}</td>		
+				<td>${appointmentList.note}</td>							
 			</tr>
 		</c:forEach>
 	</table>
