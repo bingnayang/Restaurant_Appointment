@@ -1,7 +1,9 @@
 package in.appointment.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 	Connection conn = null;
 	Statement statement = null;
 	ResultSet resultSet = null;
+	PreparedStatement preparedStatement = null;
 	
 	@Override
 	public List<Appointment> get() {
@@ -49,6 +52,22 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public boolean save(Appointment appt) {
+		boolean flag = false;
+		try {
+			String sql = "INSERT INTO appointments (date,time,name,numb_people,phone,note) " + 
+					"VALUES("+appt.getAppt_Date()+","+appt.getAppt_Time()+","+appt.getName()+","+appt.getNumb_People()+","+appt.getPhone()+","+appt.getNote()+")";
+			conn = DBConnectionUtil.openConnection();
+			preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.executeUpdate();
+			flag = true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }

@@ -36,8 +36,31 @@ public class AppointmentController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String apptDate = request.getParameter("date");
+		String apptTime = request.getParameter("time");
+		String name = request.getParameter("name");
+		int numberPeople = Integer.parseInt(request.getParameter("people"));
+		String phone = request.getParameter("phone");
+		String note = request.getParameter("note");
+		
+		Appointment appt = new Appointment();
+		appt.setAppt_Date(apptDate);
+		appt.setAppt_Time(apptTime);
+		appt.setName(name);
+		appt.setNumb_People(numberPeople);
+		appt.setPhone(phone);
+		appt.setNote(note);
+		
+		// Test if form get the data
+		System.out.println("Date: "+apptDate);
+		System.out.println("Time: "+apptTime);
+		System.out.println("Name: "+name);
+		System.out.println("Number of People: "+numberPeople);
+		System.out.println("Phone: "+phone);
+		System.out.println("Note: "+note);
+		if(apptInfoDAO.save(appt)) {
+			request.setAttribute("message","data saved..");
+		}
 	}
 
 }
