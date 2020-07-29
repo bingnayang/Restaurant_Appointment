@@ -35,7 +35,7 @@
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone</label> 
-				<input type="text" class="form-control" name="phone">
+				<input type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Notes</label>

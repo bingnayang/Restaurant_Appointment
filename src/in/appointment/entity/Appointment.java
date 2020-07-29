@@ -1,5 +1,7 @@
 package in.appointment.entity;
 
+import java.time.LocalTime;
+
 public class Appointment {
 	private int appointment_ID;
 	private String appt_Date;
@@ -20,6 +22,7 @@ public class Appointment {
 	public void setAppt_Date(String appt_Date) {
 		this.appt_Date = appt_Date;
 	}
+
 	public String getAppt_Time() {
 		return appt_Time;
 	}

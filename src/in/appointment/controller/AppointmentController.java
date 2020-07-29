@@ -1,6 +1,10 @@
 package in.appointment.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -36,8 +40,11 @@ public class AppointmentController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String apptDate = request.getParameter("date");
-		String apptTime = request.getParameter("time");
+//		String apptTime = request.getParameter("time");
+		String apptTime = LocalTime.parse(request.getParameter("time"), DateTimeFormatter.ofPattern("HH:mm")).format(DateTimeFormatter.ofPattern("hh:mm a"));
+		
 		String name = request.getParameter("name");
 		int numberPeople = Integer.parseInt(request.getParameter("people"));
 		String phone = request.getParameter("phone");
@@ -52,12 +59,13 @@ public class AppointmentController extends HttpServlet {
 		appt.setNote(note);
 		
 		// Test if form get the data
-		System.out.println("Date: "+apptDate);
-		System.out.println("Time: "+apptTime);
-		System.out.println("Name: "+name);
-		System.out.println("Number of People: "+numberPeople);
-		System.out.println("Phone: "+phone);
-		System.out.println("Note: "+note);
+//		System.out.println("Date: "+apptDate);
+//		System.out.println("Time: "+apptTime);
+//		System.out.println("Name: "+name);
+//		System.out.println("Number of People: "+numberPeople);
+//		System.out.println("Phone: "+phone);
+//		System.out.println("Note: "+note);
+		
 		if(apptInfoDAO.save(appt)) {
 			request.setAttribute("message","data saved..");
 		}
