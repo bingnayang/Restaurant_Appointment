@@ -13,9 +13,14 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+	<nav class="navbar navbar-light mb-2" style="background-color: #1F3944;">
+		<a class="navbar-brand text-white" href="#"> <i class="fa fa-cutlery"
+			aria-hidden="true"></i> Restaurant Appointment
+		</a>
+		<button class="btn btn-outline-light my-2 my-sm-0" onclick="goBack();">Back To Appointment List</button>
+	</nav>
 	<div class="container p-3 mb-2 bg-light text-dark" style="margin-top: 2em;">
 		<h2 class="text-center">Book Appointment</h2>
-		<p>${message}</p>
 		<form action="${pageContext.request.contextPath}/AppointmentController" method="POST">
 			<div class="form-group">
 				<label for="date">Date</label> 
@@ -45,4 +50,10 @@
 		</form>
 	</div>
 </body>
+<script type="text/javascript">
+	function goBack()
+	{
+		location.href="${pageContext.request.contextPath}/AppointmentController?action=LIST";
+	}
+</script>
 </html>
