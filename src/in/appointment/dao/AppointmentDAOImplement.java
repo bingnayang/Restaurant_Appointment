@@ -70,4 +70,52 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 		return flag;
 	}
 
+	@Override
+	public Appointment get(int id) {
+		Appointment appointment = null;
+		try {
+			appointment = new Appointment();
+			String sql = "SELECT * FROM appointments WHERE appointment_ID ="+id;
+			conn = DBConnectionUtil.openConnection();
+			statement = conn.createStatement();
+			resultSet = statement.executeQuery(sql);
+			
+			while(resultSet.next()) {
+				appointment.setAppointment_ID(resultSet.getInt("appointment_ID"));
+				appointment.setAppt_Date(resultSet.getString("date"));
+				appointment.setAppt_Time(resultSet.getString("time"));
+				appointment.setName(resultSet.getString("name"));
+				appointment.setNumb_People(resultSet.getInt("numb_people"));
+				appointment.setPhone(resultSet.getString("phone"));
+				appointment.setNote(resultSet.getString("note"));
+			}
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Id: "+appointment.getAppointment_ID());
+		System.out.println("Date: "+appointment.getAppt_Date());
+		System.out.println("Time: "+appointment.getAppt_Time());
+		System.out.println("Name: "+appointment.getName());
+		System.out.println("Phone: "+appointment.getPhone());
+		System.out.println("Note: "+appointment.getNote());
+		return appointment;
+	}
+
+	@Override
+	public boolean delete(int id) {
+		boolean flag = false;
+		try {
+			String sql = "DELETE FROM appointments WHERE appointment_ID = "+id;
+			conn = DBConnectionUtil.openConnection();
+			preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.executeUpdate();
+			flag = true;
+			
+		}catch(SQLException e) {;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 }

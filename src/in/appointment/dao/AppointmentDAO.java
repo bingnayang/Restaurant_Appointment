@@ -7,4 +7,7 @@ import in.appointment.entity.Appointment;
 public interface AppointmentDAO {
 	List<Appointment> get();
 	boolean save(Appointment appt);
+	boolean delete(int id);
+	Appointment get(int id);
+	
 }

@@ -41,6 +41,12 @@ public class AppointmentController extends HttpServlet {
 			case "LIST":
 				listAppointment(request,response);
 				break;
+			case "EDIT":
+				getSingleAppointment(request,response);
+				break;
+			case "DELETE":
+				deleteAppointment(request,response);
+				break;
 			default:
 				listAppointment(request,response);
 				break;
@@ -89,6 +95,22 @@ public class AppointmentController extends HttpServlet {
 		dispatcher = request.getRequestDispatcher("/views/appointment-list.jsp");
 		// Forward the request and response objects
 		dispatcher.forward(request,response);
+	}
+	public void getSingleAppointment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String id = request.getParameter("id");
+		Appointment appointment = apptInfoDAO.get(Integer.parseInt(id));
+		request.setAttribute("appointment",appointment);
+		// Get the request dispatcher
+		dispatcher = request.getRequestDispatcher("/views/appointment-add.jsp");
+		// Forward the request and response objects
+		dispatcher.forward(request,response);
+	}
+	public void deleteAppointment(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+		String id = request.getParameter("id");
+		if(apptInfoDAO.delete(Integer.parseInt(id))){
+			request.setAttribute("message","Appointment has been deleted");
+		}
+		listAppointment(request,response);
 	}
 
 }
