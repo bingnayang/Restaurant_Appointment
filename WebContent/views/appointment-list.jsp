@@ -12,11 +12,11 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="icon" href="https://image.flaticon.com/icons/svg/685/685352.svg">
 </head>
 <body>
 	<nav class="navbar navbar-light mb-2" style="background-color: #1F3944;">
-		<a class="navbar-brand text-white" href="#"> <i
+		<a class="navbar-brand text-white" href="${pageContext.request.contextPath}/AppointmentController?action=LIST"> <i
 			class="fa fa-cutlery" aria-hidden="true"></i> Restaurant Appointment
 		</a>
 		<button class="btn btn-outline-light my-2 my-sm-0" type="submit"
@@ -26,16 +26,19 @@
 
 	<div class="container-fluid mb-2">
 		<div class="card text-center">
-			<div class="card-header"><h3>Asian Cuisine</h3></div>
+			<div class="card-header text-light" style="background-color: #1F3944;"><h3>Asian Cuisine</h3></div>
 			<div class="card-body">
-				<h5 class="card-title">Today Date</h5>
-				<h5 class="card-title">Time</h5>
+				<h5 class="card-title">Today Date
+					<p> <script> document.write(new Date().toLocaleDateString());</script></p>
+				</h5>
+				<h5 class="card-title">Time 
+					<p> <script> document.write(new Date().toLocaleTimeString());</script></p>
+				</h5>
 				<p class="card-text">${message}</p>
 				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST_TODAY">Today Appointments</a>
-				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST">All Appointments</a>
-				
+				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST">All Active Appointments</a>	
+				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST_PAST">All Past Appointments</a>								
 			</div>
-			<div class="card-footer text-muted"></div>
 		</div>
 	</div>
 	
@@ -85,7 +88,4 @@
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
 </body>
-<script type="text/javascript">
-	
-</script>
 </html>

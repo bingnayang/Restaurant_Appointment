@@ -44,6 +44,9 @@ public class AppointmentController extends HttpServlet {
 			case "LIST_TODAY":
 				listTodayAppointment(request,response);
 				break;
+			case "LIST_PAST":
+				listPastAppointment(request,response);
+				break;
 			case "EDIT":
 				getSingleAppointment(request,response);
 				break;
@@ -90,7 +93,7 @@ public class AppointmentController extends HttpServlet {
 	
 	public void listAppointment(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
 		// Call DAO method to get list of apptInfo
-		List<Appointment> allAppointmentList = apptInfoDAO.getAll();		
+		List<Appointment> allAppointmentList = apptInfoDAO.getAllActive();		
 		// Add the book to request object
 		request.setAttribute("allAppointmentList",allAppointmentList);
 		// Get the request dispatcher
@@ -108,9 +111,23 @@ public class AppointmentController extends HttpServlet {
 		// Forward the request and response objects
 		dispatcher.forward(request,response);
 	}
+	public void listPastAppointment(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+		// Call DAO method to get list of apptInfo
+		List<Appointment> pastApptmentList = apptInfoDAO.getPastList();		
+		// Add the book to request object
+		request.setAttribute("allAppointmentList",pastApptmentList);
+		// Get the request dispatcher
+		dispatcher = request.getRequestDispatcher("/views/appointment-list.jsp");
+		// Forward the request and response objects
+		dispatcher.forward(request,response);
+	}
 	public void getSingleAppointment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String id = request.getParameter("id");
 		Appointment appointment = apptInfoDAO.get(Integer.parseInt(id));
+		String getTime = appointment.getAppt_Time();
+		String timeFormat = LocalTime.parse(getTime, DateTimeFormatter.ofPattern("hh:mm a")).format(DateTimeFormatter.ofPattern("HH:mm"));
+		appointment.setAppt_Time(timeFormat);
+		
 		request.setAttribute("appointment",appointment);
 		// Get the request dispatcher
 		dispatcher = request.getRequestDispatcher("/views/appointment-add.jsp");
