@@ -41,6 +41,9 @@ public class AppointmentController extends HttpServlet {
 			case "LIST":
 				listAppointment(request,response);
 				break;
+			case "LIST_TODAY":
+				listTodayAppointment(request,response);
+				break;
 			case "EDIT":
 				getSingleAppointment(request,response);
 				break;
@@ -87,10 +90,19 @@ public class AppointmentController extends HttpServlet {
 	
 	public void listAppointment(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
 		// Call DAO method to get list of apptInfo
-		List<Appointment> allAppointmentList = apptInfoDAO.get();		
+		List<Appointment> allAppointmentList = apptInfoDAO.getAll();		
 		// Add the book to request object
 		request.setAttribute("allAppointmentList",allAppointmentList);
-		
+		// Get the request dispatcher
+		dispatcher = request.getRequestDispatcher("/views/appointment-list.jsp");
+		// Forward the request and response objects
+		dispatcher.forward(request,response);
+	}
+	public void listTodayAppointment(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+		// Call DAO method to get list of apptInfo
+		List<Appointment> appointmentList = apptInfoDAO.getCurrentList();		
+		// Add the book to request object
+		request.setAttribute("allAppointmentList",appointmentList);
 		// Get the request dispatcher
 		dispatcher = request.getRequestDispatcher("/views/appointment-list.jsp");
 		// Forward the request and response objects

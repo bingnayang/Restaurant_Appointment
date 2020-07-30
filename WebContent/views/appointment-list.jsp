@@ -23,16 +23,17 @@
 			onclick="window.location.href='views/appointment-add.jsp'">
 			Book Appointment</button>
 	</nav>
-<%-- 	<div class="alert alert-success" role="alert" id="message">${message}</div> --%>
 
 	<div class="container-fluid mb-2">
 		<div class="card text-center">
-			<div class="card-header">Asian Cuisine</div>
+			<div class="card-header"><h3>Asian Cuisine</h3></div>
 			<div class="card-body">
 				<h5 class="card-title">Today Date</h5>
 				<h5 class="card-title">Time</h5>
-				<p class="card-text"></p>
-				<a href="#" class="btn btn-primary">Search</a>
+				<p class="card-text">${message}</p>
+				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST_TODAY">Today Appointments</a>
+				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST">All Appointments</a>
+				
 			</div>
 			<div class="card-footer text-muted"></div>
 		</div>
@@ -46,7 +47,7 @@
 				<th>Date</th>
 				<th>Time</th>
 				<th>Name</th>
-				<th>People</th>
+				<th># People</th>
 				<th>Phone</th>
 				<th>Note</th>
 				<th>EDIT / DELETE</th>
@@ -64,8 +65,7 @@
 					<td>
 						<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=EDIT&id=${appointmentList.appointment_ID}">Edit</a>
 						/
-						<a type="button" class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=DELETE&id=${appointmentList.appointment_ID}">Delete</a>
-						
+						<a type="button" class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=DELETE&id=${appointmentList.appointment_ID}">Delete</a>					
 					</td>
 				</tr>
 			</c:forEach>
