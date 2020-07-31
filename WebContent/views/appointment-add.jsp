@@ -11,10 +11,11 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="https://image.flaticon.com/icons/svg/685/685352.svg">
 </head>
 <body>
 	<nav class="navbar navbar-light mb-2" style="background-color: #1F3944;">
-		<a class="navbar-brand text-white" href="#"> <i class="fa fa-cutlery"
+		<a class="navbar-brand text-white" href="${pageContext.request.contextPath}/AppointmentController?action=LIST"> <i class="fa fa-cutlery"
 			aria-hidden="true"></i> Restaurant Appointment
 		</a>
 		<button class="btn btn-outline-light my-2 my-sm-0" onclick="goBack();">Back To Appointment List</button>
@@ -24,29 +25,30 @@
 		<form action="${pageContext.request.contextPath}/AppointmentController" method="POST">
 			<div class="form-group">
 				<label for="date">Date</label> 
-				<input type="date" class="form-control" name="date">
+				<input type="date" class="form-control" name="date" value="${appointment.appt_Date}">
 			</div>
 			<div class="form-group">
 				<label for="time">Time</label> 
-				<input type="time" class="form-control" name="time">
+				<input type="time" class="form-control" name="time" value="${appointment.appt_Time}">
 			</div>
 			<div class="form-group">
 				<label for="name">Name</label> 
-				<input type="text" class="form-control" name="name">
+				<input type="text" class="form-control" name="name" value="${appointment.name}">
 			</div>
 			<div class="form-group">
 				<label for="number">Number of People</label> 
-				<input type="number" class="form-control" name="people">
+				<input type="number" class="form-control" name="people" value="${appointment.numb_People}">
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone</label> 
-				<input type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+				<input type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" value="${appointment.phone}">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Notes</label>
-				<textarea class="form-control" rows="3" name="note"></textarea>
+				<textarea class="form-control" rows="3" name="note" value="${appointment.note}">${appointment.note}</textarea>
 			</div>
-			  <button type="submit" class="btn btn-secondary btn-lg btn-block" style="background-color: #1F3944;">Submit</button>
+			<input type="hidden" value="${appointment.appointment_ID}" name="id"/>
+			<button type="submit" class="btn btn-secondary btn-lg btn-block" style="background-color: #1F3944;">Submit</button>
 		</form>
 	</div>
 </body>

@@ -23,8 +23,8 @@ public class AppointmentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	RequestDispatcher dispatcher = null;
-	// Create a reference variable for apptInfo DAO
 	AppointmentDAO apptInfoDAO = null;
+	
 	// Create constructor and initaize apptInfo DAO
 	public AppointmentController() {
 		apptInfoDAO = new AppointmentDAOImplement();
@@ -60,7 +60,7 @@ public class AppointmentController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String apptID = request.getParameter("id");
 		String apptDate = request.getParameter("date");
 		String apptTime = LocalTime.parse(request.getParameter("time"), DateTimeFormatter.ofPattern("HH:mm")).format(DateTimeFormatter.ofPattern("hh:mm a"));
 		String name = request.getParameter("name");
@@ -77,6 +77,7 @@ public class AppointmentController extends HttpServlet {
 		appt.setNote(note);
 		
 		// Test if form get the data and print out
+//		System.out.println("Id: "+apptID);		
 //		System.out.println("Date: "+apptDate);
 //		System.out.println("Time: "+apptTime);
 //		System.out.println("Name: "+name);
@@ -85,8 +86,17 @@ public class AppointmentController extends HttpServlet {
 //		System.out.println("Note: "+note);
 		
 		
-		if(apptInfoDAO.save(appt)) {
-			request.setAttribute("message","Table Reserved");
+		if(apptID.isEmpty() || apptID == null) {
+			// Insert new appointment
+			if(apptInfoDAO.save(appt)) {
+				request.setAttribute("message","Appointment Book");
+			}
+		}else {
+			// Update an appointment
+			appt.setAppointment_ID(Integer.parseInt(apptID));
+			if(apptInfoDAO.update(appt)) {
+				request.setAttribute("message","Appointment Update");
+			}
 		}
 		listAppointment(request,response);
 	}
@@ -141,5 +151,4 @@ public class AppointmentController extends HttpServlet {
 		}
 		listAppointment(request,response);
 	}
-
 }

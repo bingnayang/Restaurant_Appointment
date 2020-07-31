@@ -12,12 +12,16 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon" href="https://image.flaticon.com/icons/svg/685/685352.svg">
+<link rel="icon"
+	href="https://image.flaticon.com/icons/svg/685/685352.svg">
 </head>
-<body>
-	<nav class="navbar navbar-light mb-2" style="background-color: #1F3944;">
-		<a class="navbar-brand text-white" href="${pageContext.request.contextPath}/AppointmentController?action=LIST"> <i
-			class="fa fa-cutlery" aria-hidden="true"></i> Restaurant Appointment
+<body class="bg-light">
+	<nav class="navbar navbar-light mb-2"
+		style="background-color: #1F3944;">
+		<a class="navbar-brand text-white"
+			href="${pageContext.request.contextPath}/AppointmentController?action=LIST">
+			<i class="fa fa-cutlery" aria-hidden="true"></i> Restaurant
+			Appointment
 		</a>
 		<button class="btn btn-outline-light my-2 my-sm-0" type="submit"
 			onclick="window.location.href='views/appointment-add.jsp'">
@@ -26,22 +30,34 @@
 
 	<div class="container-fluid mb-2">
 		<div class="card text-center">
-			<div class="card-header text-light" style="background-color: #1F3944;"><h3>Asian Cuisine</h3></div>
+			<div class="card-header text-light"
+				style="background-color: #1F3944;">
+				<h3>Asian Cuisine</h3>
+			</div>
 			<div class="card-body">
-				<h5 class="card-title">Today Date
-					<p> <script> document.write(new Date().toLocaleDateString());</script></p>
-				</h5>
-				<h5 class="card-title">Time 
-					<p> <script> document.write(new Date().toLocaleTimeString());</script></p>
+				<h5 class="card-title">
+					Date and Time
+					<p>
+						<script>
+							document.write(new Date().toLocaleString());
+						</script>
+					</p>
 				</h5>
 				<p class="card-text">${message}</p>
-				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST_TODAY">Today Appointments</a>
-				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST">All Active Appointments</a>	
-				<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=LIST_PAST">All Past Appointments</a>								
+				<a type="button" class="btn btn-outline-info btn-sm"
+					href="${pageContext.request.contextPath}/AppointmentController?action=LIST_TODAY">Today
+					Appointments</a> 
+				<a type="button" class="btn btn-outline-info btn-sm"
+					href="${pageContext.request.contextPath}/AppointmentController?action=LIST">All
+					Active Appointments</a> 
+				<a type="button"
+					class="btn btn-outline-info btn-sm"
+					href="${pageContext.request.contextPath}/AppointmentController?action=LIST_PAST">All
+					Past Appointments</a>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Appointment List Table -->
 	<div class="container-fluid">
 		<table class="table table-striped">
@@ -65,10 +81,10 @@
 					<td>${appointmentList.numb_People}</td>
 					<td>${appointmentList.phone}</td>
 					<td>${appointmentList.note}</td>
-					<td>
-						<a type="button" class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=EDIT&id=${appointmentList.appointment_ID}">Edit</a>
-						/
-						<a type="button" class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/AppointmentController?action=DELETE&id=${appointmentList.appointment_ID}">Delete</a>					
+					<td><a type="button" class="btn btn-outline-info btn-sm"
+						href="${pageContext.request.contextPath}/AppointmentController?action=EDIT&id=${appointmentList.appointment_ID}">Edit</a>
+						/ <a type="button" class="btn btn-outline-danger btn-sm"
+						href="${pageContext.request.contextPath}/AppointmentController?action=DELETE&id=${appointmentList.appointment_ID}">Delete</a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -76,7 +76,20 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 		}
 		return flag;
 	}
-	
+	@Override
+	public boolean update(Appointment appt) {
+		boolean flag = false;
+		try {
+			String sql = "UPDATE appointments SET date ='"+appt.getAppt_Date()+"',time='"+appt.getAppt_Time()+"',name ='"+appt.getName()+"',numb_people ="+appt.getNumb_People()+" ,phone ='"+appt.getPhone()+"',note ='"+appt.getNote()+"' WHERE appointment_ID = "+appt.getAppointment_ID();
+			conn = DBConnectionUtil.openConnection();
+			preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.executeUpdate();
+			flag = true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	@Override
 	public List<Appointment> getAllActive() {
 		// Create reference variables
@@ -184,9 +197,8 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
 		return list;
-		
 	}
+
 
 }
