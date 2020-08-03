@@ -16,6 +16,13 @@
 	href="https://image.flaticon.com/icons/svg/685/685352.svg">
 </head>
 <body class="bg-light">
+<%
+	String email = (String)session.getAttribute("email");
+	// If user is already logged in, redirect to list page
+	if(email == null){
+		response.sendRedirect("index.jsp");
+	}
+%>
 	<nav class="navbar navbar-light mb-2"
 		style="background-color: #1F3944;">
 		<a class="navbar-brand text-white"
@@ -23,9 +30,7 @@
 			<i class="fa fa-cutlery" aria-hidden="true"></i> Restaurant
 			Appointment
 		</a>
-		<button class="btn btn-outline-light my-2 my-sm-0" type="submit"
-			onclick="window.location.href='views/appointment-add.jsp'">
-			Book Appointment</button>
+		<a class="btn btn-outline-light my-2 my-sm-0" href="${pageContext.request.contextPath}/logout.jsp">Logout</a>
 	</nav>
 
 	<div class="container-fluid mb-2">
@@ -42,6 +47,12 @@
 							document.write(new Date().toLocaleString());
 						</script>
 					</p>
+					<div>
+						<button class="btn btn-outline-dark my-2 my-sm-0" type="submit"
+								onclick="window.location.href='views/appointment-add.jsp'">
+								Book Appointment
+						</button>
+					</div>
 				</h5>
 				<p class="card-text">${message}</p>
 				<a type="button" class="btn btn-outline-info btn-sm"

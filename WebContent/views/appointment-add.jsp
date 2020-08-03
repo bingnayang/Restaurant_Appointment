@@ -14,11 +14,14 @@
 <link rel="icon" href="https://image.flaticon.com/icons/svg/685/685352.svg">
 </head>
 <body>
-	<nav class="navbar navbar-light mb-2" style="background-color: #1F3944;">
+	<nav class="navbar navbar-light justify-content-between" style="background-color: #1F3944;">
 		<a class="navbar-brand text-white" href="${pageContext.request.contextPath}/AppointmentController?action=LIST"> <i class="fa fa-cutlery"
 			aria-hidden="true"></i> Restaurant Appointment
 		</a>
-		<button class="btn btn-outline-light my-2 my-sm-0" onclick="goBack();">Back To Appointment List</button>
+		<div class="form-inline">
+			<button class="btn btn-outline-light mr-sm-2" onclick="goBack();">Back To Appointment List</button>
+			<a class="btn btn-outline-light my-2 my-sm-0" href="${pageContext.request.contextPath}/logout.jsp">Logout</a>
+	  </div>
 	</nav>
 	<div class="container p-3 mb-2 bg-light text-dark" style="margin-top: 2em;">
 		<h2 class="text-center">Book Appointment</h2>
