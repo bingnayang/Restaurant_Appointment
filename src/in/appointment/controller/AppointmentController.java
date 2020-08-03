@@ -1,10 +1,8 @@
 package in.appointment.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -16,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import in.appointment.dao.AppointmentDAO;
 import in.appointment.dao.AppointmentDAOImplement;
 import in.appointment.entity.Appointment;
-
-
 
 public class AppointmentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +28,7 @@ public class AppointmentController extends HttpServlet {
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String action = request.getParameter("action");
 		if(action == null) {
 			action = "LIST";
@@ -46,6 +42,9 @@ public class AppointmentController extends HttpServlet {
 				break;
 			case "LIST_PAST":
 				listPastAppointment(request,response);
+				break;
+			case "SEARCH":
+				searchAppointment(request,response);
 				break;
 			case "EDIT":
 				getSingleAppointment(request,response);
@@ -98,7 +97,7 @@ public class AppointmentController extends HttpServlet {
 				request.setAttribute("message","Appointment Update");
 			}
 		}
-		listAppointment(request,response);
+
 	}
 	
 	public void listAppointment(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
@@ -150,5 +149,20 @@ public class AppointmentController extends HttpServlet {
 			request.setAttribute("message","Appointment has been deleted");
 		}
 		listAppointment(request,response);
+	}
+	public void searchAppointment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String requestUrl = request.getRequestURI();
+		String name = requestUrl.substring("/AppointmentController?phoneNumber=".length());
+		System.out.println("Test: "+name);
+		
+		String phoneNumb = request.getParameter("phoneNumber");
+		System.out.println("Phone Number:"+phoneNumb);
+		List<Appointment> searchApptmentList = apptInfoDAO.getAppointmentByPhone(phoneNumb);
+		// Add the book to request object
+		request.setAttribute("allAppointmentList",searchApptmentList);
+		// Get the request dispatcher
+		dispatcher = request.getRequestDispatcher("/views/appointment-list.jsp");
+		// Forward the request and response objects
+		dispatcher.forward(request,response);
 	}
 }

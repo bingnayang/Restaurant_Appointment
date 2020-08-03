@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -180,6 +178,40 @@ public class AppointmentDAOImplement implements AppointmentDAO {
 			statement = conn.createStatement();
 			resultSet = statement.executeQuery(sql);
 //			System.out.println(sql);
+			// Process the resultSet
+			while(resultSet.next()) {
+				apptInfo = new Appointment();
+				apptInfo.setAppointment_ID(resultSet.getInt("appointment_ID"));
+				apptInfo.setAppt_Date(resultSet.getString("date"));
+				apptInfo.setAppt_Time(resultSet.getString("time"));
+				apptInfo.setName(resultSet.getString("name"));
+				apptInfo.setNumb_People(resultSet.getInt("numb_people"));
+				apptInfo.setPhone(resultSet.getString("phone"));
+				apptInfo.setNote(resultSet.getString("note"));
+				// Add book to list
+				list.add(apptInfo);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Appointment> getAppointmentByPhone(String phone) {
+		// Create reference variables
+		List<Appointment> list = null;
+		Appointment apptInfo = null;
+
+		try {
+			list = new ArrayList<Appointment>();
+			// SQL
+			String sql = "SELECT * FROM appointments WHERE appointments.phone = '"+phone+"' ORDER BY date,time ASC";
+			// Get the database connection
+			conn = DBConnectionUtil.openConnection();
+			statement = conn.createStatement();
+			resultSet = statement.executeQuery(sql);
 			// Process the resultSet
 			while(resultSet.next()) {
 				apptInfo = new Appointment();

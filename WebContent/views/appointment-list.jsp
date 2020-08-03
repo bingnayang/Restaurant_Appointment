@@ -57,7 +57,12 @@
 			</div>
 		</div>
 	</div>
-
+	
+<%-- 	<form action="<%= request.getContextPath() %>/AppointmentController?action=SEARCH" method="GET">
+		<input type="text" name="phoneNumber">
+		<button type="submit" class="btn btn-secondary" style="background-color: #1F3944;">Submit</button>
+	</form>
+ --%>
 	<!-- Appointment List Table -->
 	<div class="container-fluid">
 		<table class="table table-striped">
