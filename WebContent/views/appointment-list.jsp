@@ -10,10 +10,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon"
-	href="https://image.flaticon.com/icons/svg/685/685352.svg">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="https://image.flaticon.com/icons/svg/685/685352.svg">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
 </head>
 <body class="bg-light">
 <%
@@ -39,7 +39,9 @@
 				style="background-color: #1F3944;">
 				<h3>Asian Cuisine</h3>
 			</div>
+
 			<div class="card-body">
+				<p class="card-text">Hello ${userName}</p>
 				<h5 class="card-title">
 					Date and Time
 					<p>
@@ -69,24 +71,21 @@
 		</div>
 	</div>
 	
-<%-- 	<form action="<%= request.getContextPath() %>/AppointmentController?action=SEARCH" method="GET">
-		<input type="text" name="phoneNumber">
-		<button type="submit" class="btn btn-secondary" style="background-color: #1F3944;">Submit</button>
-	</form>
- --%>
 	<!-- Appointment List Table -->
 	<div class="container-fluid">
-		<table class="table table-striped">
-			<tr style="background-color: #1F3944; color: white;">
-				<th>#</th>
-				<th>Date</th>
-				<th>Time</th>
-				<th>Name</th>
-				<th># People</th>
-				<th>Phone</th>
-				<th>Note</th>
-				<th>EDIT / DELETE</th>
-			</tr>
+		<table class="table table-striped" id="datatable">
+			<thead class="text-light" style="background-color: #1F3944;">
+				<tr style="background-color: #1F3944; color: white;">
+					<th>#</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Name</th>
+					<th># People</th>
+					<th>Phone</th>
+					<th>Note</th>
+					<th>EDIT / DELETE</th>
+				</tr>
+			</thead>
 			<c:forEach items="${allAppointmentList}" var="appointmentList"
 				varStatus="status">
 				<tr>
@@ -119,5 +118,13 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+	</script>
 </body>
+<script type="text/javascript">
+	$(document).ready( function () {
+    $('#datatable').DataTable();
+} );
+</script>
 </html>

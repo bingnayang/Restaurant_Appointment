@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.appointment.dao.AppointmentDAO;
 import in.appointment.dao.AppointmentDAOImplement;
+import in.appointment.dao.LoginDAO;
+import in.appointment.dao.LoginDAOImplement;
 import in.appointment.entity.Appointment;
 
 public class AppointmentController extends HttpServlet {
@@ -20,6 +22,7 @@ public class AppointmentController extends HttpServlet {
 	
 	RequestDispatcher dispatcher = null;
 	AppointmentDAO apptInfoDAO = null;
+	LoginDAO loginDAO = new LoginDAOImplement();
 	
 	// Create constructor and initaize apptInfo DAO
 	public AppointmentController() {
@@ -28,7 +31,8 @@ public class AppointmentController extends HttpServlet {
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
 		String action = request.getParameter("action");
 		if(action == null) {
 			action = "LIST";
@@ -56,6 +60,7 @@ public class AppointmentController extends HttpServlet {
 				listAppointment(request,response);
 				break;
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

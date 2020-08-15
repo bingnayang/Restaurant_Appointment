@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.sqlite.jdbc4.JDBC4PreparedStatement;
-
 import in.appointment.entity.Login;
 import in.appointment.util.DBConnectionUtil;
 

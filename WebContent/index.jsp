@@ -1,5 +1,4 @@
 <%-- <% response.sendRedirect("AppointmentController?action=LIST");%> --%>
-
 <!DOCTYPE>
 <html>
 <head>
@@ -57,7 +56,7 @@ body {
 	display: flex;
  	-ms-flex-align: center;
 	align-items: center;
-	padding-top: 40px;
+	padding-top: 30px;
 	padding-bottom: 40px;
 	background-color: #f5f5f5;
 }

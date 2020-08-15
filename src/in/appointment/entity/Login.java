@@ -4,6 +4,13 @@ public class Login {
 	private int login_ID;
 	private String userEmail;
 	private String passWord;
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getLogin_ID() {
 		return login_ID;
 	}
