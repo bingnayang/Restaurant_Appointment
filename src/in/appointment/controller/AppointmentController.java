@@ -102,7 +102,8 @@ public class AppointmentController extends HttpServlet {
 				request.setAttribute("message","Appointment Update");
 			}
 		}
-
+		// Redirect back to appointment list page
+		listAppointment(request,response);
 	}
 	
 	public void listAppointment(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
