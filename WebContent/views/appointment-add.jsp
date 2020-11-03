@@ -28,23 +28,23 @@
 		<form action="${pageContext.request.contextPath}/AppointmentController" method="POST">
 			<div class="form-group">
 				<label for="date">Date</label> 
-				<input type="date" class="form-control" name="date" value="${appointment.appt_Date}">
+				<input type="date" class="form-control" name="date" value="${appointment.appt_Date}" required="required">
 			</div>
 			<div class="form-group">
 				<label for="time">Time</label> 
-				<input type="time" class="form-control" name="time" value="${appointment.appt_Time}">
+				<input type="time" class="form-control" name="time" value="${appointment.appt_Time}" required="required">
 			</div>
 			<div class="form-group">
 				<label for="name">Name</label> 
-				<input type="text" class="form-control" name="name" value="${appointment.name}">
+				<input type="text" class="form-control" name="name" value="${appointment.name}" required="required">
 			</div>
 			<div class="form-group">
 				<label for="number">Number of People</label> 
-				<input type="number" class="form-control" name="people" value="${appointment.numb_People}">
+				<input type="number" class="form-control" name="people" value="${appointment.numb_People}" required="required">
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone</label> 
-				<input type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" value="${appointment.phone}">
+				<input type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" value="${appointment.phone}" required="required">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Notes</label>

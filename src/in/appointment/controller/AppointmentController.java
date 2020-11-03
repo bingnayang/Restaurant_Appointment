@@ -131,6 +131,7 @@ public class AppointmentController extends HttpServlet {
 		List<Appointment> pastApptmentList = apptInfoDAO.getPastList();		
 		// Add the book to request object
 		request.setAttribute("allAppointmentList",pastApptmentList);
+		request.setAttribute("appointmentType","past_appt");
 		// Get the request dispatcher
 		dispatcher = request.getRequestDispatcher("/views/appointment-list.jsp");
 		// Forward the request and response objects

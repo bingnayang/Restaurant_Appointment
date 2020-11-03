@@ -73,7 +73,36 @@
 	
 	<!-- Appointment List Table -->
 	<div class="container-fluid">
-		<table class="table table-striped" id="datatable">
+		<c:choose>
+			<c:when test="${appointmentType == 'past_appt'}">
+					<table class="table table-striped" id="datatable">
+			<thead class="text-light" style="background-color: #1F3944;">
+				<tr style="background-color: #1F3944; color: white;">
+					<th>#</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Name</th>
+					<th># People</th>
+					<th>Phone</th>
+					<th>Note</th>
+				</tr>
+			</thead>
+			<c:forEach items="${allAppointmentList}" var="appointmentList"
+				varStatus="status">
+				<tr>
+					<td>${status.count}"</td>
+					<td>${appointmentList.appt_Date}</td>
+					<td>${appointmentList.appt_Time}</td>
+					<td>${appointmentList.name}</td>
+					<td>${appointmentList.numb_People}</td>
+					<td>${appointmentList.phone}</td>
+					<td>${appointmentList.note}</td>
+				</tr>
+			</c:forEach>
+		</table>
+			</c:when>
+			<c:otherwise>
+					<table class="table table-striped" id="datatable">
 			<thead class="text-light" style="background-color: #1F3944;">
 				<tr style="background-color: #1F3944; color: white;">
 					<th>#</th>
@@ -104,6 +133,8 @@
 				</tr>
 			</c:forEach>
 		</table>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 	<!-- JS, Popper.js, and jQuery -->
